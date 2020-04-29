@@ -1,0 +1,76 @@
+{
+  "name": "vuetemplate",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "start": "vue-cli-service serve --open",
+    "build": "vue-cli-service build",
+    "build:pre": "vue-cli-service build",
+    "build:prod": "vue-cli-service build --mode prod",
+    "lint": "npm run lint:eslint && npm run lint:stylelint",
+    "lint:eslint": "vue-cli-service lint",
+    "lint:stylelint": "stylelint src/**/*.less --fix"
+  },
+  "author": {
+    "name": "zengqingsen",
+    "email": ""
+  },
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "dependencies": {
+    "ant-design-vue": "^1.5.3",
+    "core-js": "^3.6.4",
+    "less": "^3.11.1",
+    "less-loader": "^6.0.0",
+    "lib-flexible": "^0.3.2",
+    "moment": "^2.24.0",
+    "numeral": "^2.0.6",
+    "postcss-import": "^12.0.1",
+    "postcss-normalize": "^9.0.0",
+    "postcss-plugin-px2rem": "^0.8.1",
+    "vue": "^2.6.11",
+    "vue-router": "^3.1.6",
+    "vuex": "^3.3.0"
+  },
+  "devDependencies": {
+    "@vue/cli-plugin-babel": "~4.3.0",
+    "@vue/cli-plugin-eslint": "~4.3.0",
+    "@vue/cli-service": "~4.3.0",
+    "babel-eslint": "^10.1.0",
+    "eslint": "^6.7.2",
+    "eslint-plugin-vue": "^6.2.2",
+    "vue-template-compiler": "^2.6.11"
+  },
+  "gitHooks": {
+    "pre-commit": "lint-staged",
+    "commit-msg": "commitlint -e"
+  },
+  "lint-staged": {
+    "*.less": "stylelint src/**/*.less",
+    "*.{js,jsx,vue}": [
+      "vue-cli-service lint --no-fix",
+      "git add"
+    ]
+  },
+  "eslintConfig": {
+    "root": true,
+    "env": {
+      "node": true
+    },
+    "extends": [
+      "plugin:vue/essential",
+      "eslint:recommended"
+    ],
+    "parserOptions": {
+      "parser": "babel-eslint"
+    },
+    "rules": {}
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not dead"
+  ]
+}
