@@ -7,7 +7,7 @@ import './plugins';
 import './registerGlobalComponent';
 
 import extend from './extend';
-import 'lib-flexible';
+// import 'lib-flexible';
 
 Vue.config.productionTip = false
 
