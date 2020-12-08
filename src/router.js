@@ -1,7 +1,7 @@
 import Vue from 'vue';
 import Router from 'vue-router';
-import routerConfig from '@/config/routes';
-// import { localStorage } from '@/utils/utils';
+import {staticRouter, asyncRouter} from '@/config/routes';
+import { setDocumentTitle, domTitle } from '@/utils/domUtil';
 
 const routerMethods = ['push', 'replace'];
 
@@ -18,13 +18,14 @@ routerMethods.forEach(method => {
 Vue.use(Router);
 
 const router = new Router({
-    // mode: 'history',
+    mode: 'history',
     base: '/',
-    routes: routerConfig,
+    routes: [...asyncRouter, ...staticRouter],
 });
 
-// router.beforeEach((to, from, next) => {
-
-// });
+router.beforeEach((to, from, next) => {
+    to.meta && (typeof to.meta.title !== 'undefined' && setDocumentTitle(`${to.meta.title} - ${domTitle}`))
+    next()
+});
 
 export default router;

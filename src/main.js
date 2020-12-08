@@ -7,7 +7,7 @@ import './plugins';
 import './registerGlobalComponent';
 
 import extend from './extend';
-// import 'lib-flexible';
+import './assets/css/reset.css';
 
 Vue.config.productionTip = false
 

@@ -12,7 +12,14 @@ import {
     Popup,
     Col,
     Row,
+    NoticeBar,
+    Swipe,
+    SwipeItem,
     Image as VanImage,
+    Overlay,
+    Form,
+    Field,
+    Dialog,
 } from 'vant';
 
 Vue.use(Button)
@@ -23,4 +30,12 @@ Vue.use(Popup)
 Vue.use(Col)
 Vue.use(Row)
 Vue.use(VanImage)
+Vue.use(NoticeBar)
+Vue.use(Swipe)
+Vue.use(SwipeItem)
+Vue.use(Overlay)
+Vue.use(Field)
+Vue.use(Form)
+Vue.use(Dialog)
 Vue.prototype.$Toast = Toast
+

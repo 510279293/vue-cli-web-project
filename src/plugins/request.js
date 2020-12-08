@@ -1,5 +1,5 @@
 import axios from 'axios';
-
+import { Toast } from 'vant';
 const codeMessage = {
     200: '服务器成功返回请求的数据。',
     201: '新建或修改数据成功。',
@@ -21,24 +21,42 @@ const codeMessage = {
     3102: '页面无权限',
 };
 
+// 创建 axios 实例
+const service = axios.create({
+  baseURL: process.env.VUE_APP_BASE_URL, // api base_url
+  timeout: 6000 // 请求超时时间
+})
+
 // 添加请求拦截器
-axios.interceptors.request.use(
+service.interceptors.request.use(
   config =>
     config,
-  error => Promise.reject(error)
+  error => {
+    console.log(error)
+    return Promise.reject(error)
+  }
 );
 
+service.interceptors.response.use(response => {
+  return response
+}, err => {
+  const res = err.response.data.BusinessException
+    let message
+    if (typeof res.message === 'string') {
+      message = res.message
+    } else {
+      message = res.message.resultMessage
+    }
+    Toast(message)
+    return Promise.reject(err)
+})
 // 网络校验
 const checkStatus = response => {
   if (response.status >= 200 && response.status < 300) {
     return response;
   }
   const errortext = codeMessage[response.status] || response.statusText;
-  // Notification.error({
-  //   title: `请求错误: ${response.url}`,
-  //   message: `${response.status}: ${errortext}`,
-  //   showClose: false,
-  // });
+  Toast(`${response.status}: ${errortext}`)
   const error = new Error(errortext);
   error.name = response.status;
   error.response = response;
@@ -47,7 +65,8 @@ const checkStatus = response => {
 
 // 请求返回内容的返回码校验
 const checkCodeNum = ({ data }) => {
-  const { codeNum, value } = data;
+  // console.log(data)
+  const { codeNum } = data;
 
   if (codeNum === 2003) {
     // router.push({ path: '/home/indexs' });
@@ -64,7 +83,7 @@ const checkCodeNum = ({ data }) => {
  */
 export default function request(url, options) {
     // 根据运行环境切换 api 接口
-    const requestURL = process.env.NODE_ENV === 'production' ? process.env.VUE_APP_URL + url : url;
+    // const requestURL = process.env.NODE_ENV === 'production' ? process.env.VUE_APP_URL + url : url;
   
     const defaultOptions = {
       credentials: 'include',
@@ -94,19 +113,7 @@ export default function request(url, options) {
       }
     }
   
-    // 文件自动下载
-    if (newOptions.headers['Content-Type'] === 'application/msexcel') {
-      if (requestURL.includes('token')) {
-        window.open(`${requestURL}`, '_self');
-      } else {
-        window.open(
-            `${requestURL}?token=${localStorage.getItem('token')}`,
-            '_self'
-        );
-      }
-      return {};
-    }
-    return axios(requestURL, newOptions)
+    return service(url, newOptions)
         .then(checkStatus)
         .then(checkCodeNum)
         .catch((e) => {

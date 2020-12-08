@@ -87,6 +87,28 @@ export function findValueInObjectArray(value, sources = [], compareProperty = 'i
     return sources.find(source => source[compareProperty] === value);
 }
 
-// 按需加载
+// 
 export const _import = (file) => () =>
-   import('@/pages/' + file + '.vue').then((m) => m.default);
+   import('@/views/' + file + '.vue').then((m) => m.default);
+
+export const regTest = {
+    phoneReg: new RegExp(/^1[3456789]\d{9}$/),
+    emailReg: new RegExp(/^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$/),
+    userNameReg: new RegExp(/(^([\u4e00-\u9fa5a-zA-Z\d+]+)$)/),
+    // 密码至少包含英文、数字、符号中的两种
+    // pwdReg: new RegExp(/(?!^(\d+|[a-zA-Z]+|[!@#$%^&*]+)$)^[\w!@#$%^&*?]{6,20}$/),
+    // 只可输入英文、数字或组合
+    pwdReg: new RegExp(/(^([a-zA-Z\d+]+)$)/), // 密码正则校验
+    prdCodeReg: new RegExp(/^\d{5}$/), // 产品编码正则校验
+    doubleNum: new RegExp(/^[0-9]+(.[0-9]{1,2})?$/), // 非负整数(2位小数)
+    idCardNum: new RegExp(/^(\d{18,18}|\d{15,15}|\d{17,17}X)$/), // 身份证号码
+    smsVarRule: new RegExp(`\\$\{([A-Za-z_]+)\\}`, 'g') // 短信变量正则
+  }
+
+export function getQueryString(name) { 
+    var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i"); 
+    console.log(window.location.search)
+    var r = window.location.href.substr(1).match(reg); 
+    if (r != null) return unescape(r[2]); 
+    return null; 
+} 

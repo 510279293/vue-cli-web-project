@@ -6,7 +6,7 @@ Vue.use(Vuex);
 const modules = {};
 
 // 解析 ‘models’ 目录 model.js 文件为带命名空间的模块
-const pageModel = require.context('./pages', true, /model.js$/);
+const pageModel = require.context('./views', true, /model.js$/);
 const globalModel = require.context('./models', false, /\.js$/);
 
 pageModel.keys().forEach(key => {
