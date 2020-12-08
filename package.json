@@ -23,7 +23,6 @@
 		"axios": "^0.21.0",
 		"less": "^3.11.1",
 		"less-loader": "^6.0.0",
-		"lib-flexible": "^0.3.2",
 		"moment": "^2.24.0",
 		"numeral": "^2.0.6",
 		"postcss-aspect-ratio-mini": "^1.1.0",
