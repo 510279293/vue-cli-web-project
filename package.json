@@ -21,59 +21,59 @@
 	},
 	"dependencies": {
 		"axios": "^0.21.0",
+		"core-js": "^3.8.1",
 		"less": "^3.11.1",
 		"less-loader": "^6.0.0",
 		"moment": "^2.24.0",
 		"numeral": "^2.0.6",
 		"postcss-aspect-ratio-mini": "^1.1.0",
-    "postcss-cssnext": "^3.1.0",
-    "postcss-normalize": "^9.0.0",
-    "postcss-plugin-px2rem": "^0.8.1",
-    "postcss-px-to-viewport": "^1.1.1",
-    "postcss-viewport-units": "^0.1.6",
-    "postcss-write-svg": "^3.0.1",
+		"postcss-cssnext": "^3.1.0",
+		"postcss-normalize": "^9.0.0",
+		"postcss-plugin-px2rem": "^0.8.1",
+		"postcss-px-to-viewport": "^1.1.1",
+		"postcss-viewport-units": "^0.1.6",
+		"postcss-write-svg": "^3.0.1",
+		"qs": "^6.9.4",
 		"vant": "^2.11.1",
 		"vue": "^2.6.11",
-		"vue-router": "^3.1.6",
-		"vuex": "^3.3.0"
+		"vue-class-component": "^7.2.3",
+		"vue-property-decorator": "^8.4.2",
+		"vue-router": "^3.2.0",
+		"vuex": "^3.4.0"
 	},
 	"devDependencies": {
-		"@vue/cli-plugin-babel": "~4.3.0",
-		"@vue/cli-plugin-eslint": "~4.3.0",
-		"@vue/cli-service": "~4.3.0",
+		"@types/numeral": "0.0.28",
+		"@typescript-eslint/eslint-plugin": "^2.33.0",
+		"@typescript-eslint/parser": "^2.33.0",
+		"@vue/cli-plugin-babel": "~4.5.0",
+		"@vue/cli-plugin-eslint": "~4.5.0",
+		"@vue/cli-plugin-router": "~4.5.0",
+		"@vue/cli-plugin-typescript": "~4.5.0",
+		"@vue/cli-plugin-vuex": "~4.5.0",
+		"@vue/cli-service": "~4.5.0",
+		"@vue/eslint-config-airbnb": "^5.0.2",
+		"@vue/eslint-config-typescript": "^5.0.2",
 		"autoprefixer": "^9.8.6",
 		"babel-eslint": "^10.1.0",
 		"cssnano-preset-advanced": "^4.0.7",
 		"eslint": "^6.7.2",
+		"eslint-plugin-import": "^2.20.2",
 		"eslint-plugin-vue": "^6.2.2",
 		"postcss-import": "^12.0.1",
 		"postcss-url": "^8.0.0",
+		"typescript": "~3.9.3",
 		"vue-template-compiler": "^2.6.11"
-	  },
+	},
 	"gitHooks": {
 		"pre-commit": "lint-staged",
 		"commit-msg": "commitlint -e"
 	},
 	"lint-staged": {
 		"*.less": "stylelint src/**/*.less",
-		"*.{js,jsx,vue}": [
+		"*.{js,jsx,vue,ts,tsx}": [
 			"vue-cli-service lint --no-fix",
 			"git add"
 		]
-	},
-	"eslintConfig": {
-		"root": true,
-		"env": {
-			"node": true
-		},
-		"extends": [
-			"plugin:vue/essential",
-			"eslint:recommended"
-		],
-		"parserOptions": {
-			"parser": "babel-eslint"
-		},
-		"rules": {}
 	},
 	"description": "",
 	"keywords": ""

@@ -7,11 +7,9 @@
 <script>
 export default {
   name: 'App',
-  mounted(){
-  },
   components: {
-  }
-}
+  },
+};
 </script>
 
 <style lang="less">
